@@ -1,0 +1,17 @@
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\bin\Debug\net6.0-windows\DesafioCSharpRest.exe
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\bin\Debug\net6.0-windows\DesafioCSharpRest.deps.json
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\bin\Debug\net6.0-windows\DesafioCSharpRest.runtimeconfig.json
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\bin\Debug\net6.0-windows\DesafioCSharpRest.dll
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\bin\Debug\net6.0-windows\DesafioCSharpRest.pdb
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.csproj.AssemblyReference.cache
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.Form1.resources
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.csproj.GenerateResource.cache
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.GeneratedMSBuildEditorConfig.editorconfig
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.AssemblyInfoInputs.cache
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.AssemblyInfo.cs
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.csproj.CoreCompileInputs.cache
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.dll
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\refint\DesafioCSharpRest.dll
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.pdb
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.genruntimeconfig.cache
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\ref\DesafioCSharpRest.dll
