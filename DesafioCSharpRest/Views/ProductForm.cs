@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DesafioCSharpRest
+namespace DesafioCSharpRest.Views
 {
-    public partial class Form2 : Form
+    public partial class ProductForm : UserControl
     {
-        public Form2()
+        public ProductForm()
         {
             InitializeComponent();
         }

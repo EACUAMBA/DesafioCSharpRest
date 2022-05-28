@@ -1,6 +1,6 @@
 ﻿namespace DesafioCSharpRest
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,8 +30,8 @@
         {
             this.buttonSaveProductForm = new System.Windows.Forms.Button();
             this.panelActions = new System.Windows.Forms.Panel();
-            this.buttonRefreshList = new System.Windows.Forms.Button();
             this.buttonUpdateProductForm = new System.Windows.Forms.Button();
+            this.buttonRefreshList = new System.Windows.Forms.Button();
             this.dataGridViewProduct = new System.Windows.Forms.DataGridView();
             this.idProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.identifierProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,13 +47,18 @@
             // 
             // buttonSaveProductForm
             // 
+            this.buttonSaveProductForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.buttonSaveProductForm.FlatAppearance.BorderSize = 0;
+            this.buttonSaveProductForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSaveProductForm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonSaveProductForm.ForeColor = System.Drawing.Color.White;
             this.buttonSaveProductForm.Location = new System.Drawing.Point(3, 3);
             this.buttonSaveProductForm.Name = "buttonSaveProductForm";
             this.buttonSaveProductForm.Size = new System.Drawing.Size(250, 40);
             this.buttonSaveProductForm.TabIndex = 0;
             this.buttonSaveProductForm.Text = "Registar";
-            this.buttonSaveProductForm.UseVisualStyleBackColor = true;
-            this.buttonSaveProductForm.Click += new System.EventHandler(this.buttonSaveProduct_Click);
+            this.buttonSaveProductForm.UseVisualStyleBackColor = false;
+            this.buttonSaveProductForm.Click += new System.EventHandler(this.buttonSaveProductForm_Click);
             // 
             // panelActions
             // 
@@ -65,23 +70,33 @@
             this.panelActions.Size = new System.Drawing.Size(256, 449);
             this.panelActions.TabIndex = 1;
             // 
-            // buttonRefreshList
-            // 
-            this.buttonRefreshList.Location = new System.Drawing.Point(3, 95);
-            this.buttonRefreshList.Name = "buttonRefreshList";
-            this.buttonRefreshList.Size = new System.Drawing.Size(250, 40);
-            this.buttonRefreshList.TabIndex = 1;
-            this.buttonRefreshList.Text = "Actualizar Lista";
-            this.buttonRefreshList.UseVisualStyleBackColor = true;
-            // 
             // buttonUpdateProductForm
             // 
+            this.buttonUpdateProductForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.buttonUpdateProductForm.FlatAppearance.BorderSize = 0;
+            this.buttonUpdateProductForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonUpdateProductForm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonUpdateProductForm.ForeColor = System.Drawing.Color.White;
             this.buttonUpdateProductForm.Location = new System.Drawing.Point(3, 49);
             this.buttonUpdateProductForm.Name = "buttonUpdateProductForm";
             this.buttonUpdateProductForm.Size = new System.Drawing.Size(250, 40);
             this.buttonUpdateProductForm.TabIndex = 2;
             this.buttonUpdateProductForm.Text = "Editar";
-            this.buttonUpdateProductForm.UseVisualStyleBackColor = true;
+            this.buttonUpdateProductForm.UseVisualStyleBackColor = false;
+            // 
+            // buttonRefreshList
+            // 
+            this.buttonRefreshList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.buttonRefreshList.FlatAppearance.BorderSize = 0;
+            this.buttonRefreshList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRefreshList.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonRefreshList.ForeColor = System.Drawing.Color.White;
+            this.buttonRefreshList.Location = new System.Drawing.Point(3, 95);
+            this.buttonRefreshList.Name = "buttonRefreshList";
+            this.buttonRefreshList.Size = new System.Drawing.Size(250, 40);
+            this.buttonRefreshList.TabIndex = 1;
+            this.buttonRefreshList.Text = "Actualizar Lista";
+            this.buttonRefreshList.UseVisualStyleBackColor = false;
             // 
             // dataGridViewProduct
             // 
@@ -157,8 +172,9 @@
             this.ClientSize = new System.Drawing.Size(1116, 473);
             this.Controls.Add(this.dataGridViewProduct);
             this.Controls.Add(this.panelActions);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Desafio CSharp Rest";
             this.panelActions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProduct)).EndInit();
             this.ResumeLayout(false);
