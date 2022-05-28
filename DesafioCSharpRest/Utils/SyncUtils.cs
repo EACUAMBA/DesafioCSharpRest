@@ -8,5 +8,6 @@ namespace DesafioCSharpRest.Utils
 {
     internal class SyncUtils
     {
+
     }
 }

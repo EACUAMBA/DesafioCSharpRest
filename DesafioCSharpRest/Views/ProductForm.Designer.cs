@@ -33,6 +33,7 @@ namespace DesafioCSharpRest.Views
         private void InitializeComponent()
         {
             this.panelActions = new System.Windows.Forms.Panel();
+            this.buttonClearFields = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSaveProduct = new System.Windows.Forms.Button();
             this.tableLayoutPanelButtonFields = new System.Windows.Forms.TableLayoutPanel();
@@ -55,12 +56,29 @@ namespace DesafioCSharpRest.Views
             // 
             // panelActions
             // 
+            this.panelActions.Controls.Add(this.buttonClearFields);
             this.panelActions.Controls.Add(this.buttonCancel);
             this.panelActions.Controls.Add(this.buttonSaveProduct);
             this.panelActions.Location = new System.Drawing.Point(3, 3);
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(256, 443);
             this.panelActions.TabIndex = 0;
+            // 
+            // buttonClearFields
+            // 
+            this.buttonClearFields.BackColor = System.Drawing.Color.White;
+            this.buttonClearFields.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.buttonClearFields.FlatAppearance.BorderSize = 2;
+            this.buttonClearFields.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClearFields.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonClearFields.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.buttonClearFields.Location = new System.Drawing.Point(3, 49);
+            this.buttonClearFields.Name = "buttonClearFields";
+            this.buttonClearFields.Size = new System.Drawing.Size(250, 40);
+            this.buttonClearFields.TabIndex = 3;
+            this.buttonClearFields.Text = "Limpar Campos";
+            this.buttonClearFields.UseVisualStyleBackColor = false;
+            this.buttonClearFields.Click += new System.EventHandler(this.clearFields);
             // 
             // buttonCancel
             // 
@@ -307,6 +325,17 @@ namespace DesafioCSharpRest.Views
         private Label labelTitle;
 
         #region Events
+        private Product? product;
+        internal void fillFieldsToUpdate(Product product)
+        {
+            this.product = product;
+            this.textBoxIdentifier.Text = product.Identifier;
+            this.textBoxDescription.Text = product.Description;
+            this.textBoxDescriptionEN.Text = product.DescriptionEN;
+            this.textBoxUnit.Text = product.Unit;
+            this.maskedTextBoxVAT.Text = FormatUtils.toStringVATField(product.VAT);
+            this.maskedTextBoxPrice.Text = FormatUtils.toStringPriceField(product.Price);
+        }
         private void buttonSaveProduct_Click(object sender, EventArgs e)
         {
             ProductService productService = ProductService.getInsance();
@@ -315,7 +344,7 @@ namespace DesafioCSharpRest.Views
             String description = this.textBoxDescription.Text;
             String descriptionEN = this.textBoxDescriptionEN.Text;
             String bearerPrice = this.maskedTextBoxPrice.Text;
-            bearerPrice = FormatUtils.stringToParseableNumber(bearerPrice);
+            bearerPrice = FormatUtils.stringToParseableDecimal(bearerPrice);
             Decimal price;
             bool priceParsed = Decimal.TryParse(bearerPrice, out price);
             if (!priceParsed)
@@ -326,7 +355,7 @@ namespace DesafioCSharpRest.Views
             }
 
             String unit = this.textBoxUnit.Text;
-            String bearerVAT = FormatUtils.stringToParseableNumber(this.maskedTextBoxVAT.Text);
+            String bearerVAT = FormatUtils.stringToParseableDecimal(this.maskedTextBoxVAT.Text);
             Double vat;
             bool vatParsed = Double.TryParse(bearerVAT, out vat);
             if (!vatParsed)
@@ -337,28 +366,34 @@ namespace DesafioCSharpRest.Views
             }
 
             Product newProduct = new Product();
+            if (this.product != null)
+                newProduct = this.product;
             newProduct.Identifier = identifier;
             newProduct.Description = description;
             newProduct.DescriptionEN = descriptionEN;
             newProduct.Price = price;
             newProduct.Unit = unit;
             newProduct.VAT = vat;
-
-            Product savedProduct = productService.saveProduct(newProduct);
-            MessageBoxUtils.showInformationBox(this, String.Format("O producto\nID:{0}\nNome: {1} \nfoi ragistado com sucesso.", savedProduct.Id, savedProduct.Identifier));
+            if (this.product != null)
+                newProduct = productService.updateProduct(newProduct);
+            else
+                newProduct = productService.saveProduct(newProduct);
+            MessageBoxUtils.showInformationBox(this, String.Format("O producto\n\nID: {0}\nNome: {1} \n\nfoi ragistado/actualizado com sucesso.", newProduct.Id, newProduct.Identifier));
         }
         public void buttonCancel_Click(object sender, EventArgs e){
             if (MessageBoxUtils.showQuestionBox(this, "Deseja cancelar o registo do produto?"))
             {
-                this.clearFields();
+                this.clearForm();
                 Panel mainPanel = ((Panel)this.Parent);
                 mainPanel.Controls.Clear();
+                Welcome.getInstance().refreshDataGridViewData();
                 mainPanel.Controls.Add(Welcome.getInstance());
             }
         }
         
-        private void clearFields()
+        private void clearFields(object sender, EventArgs e)
         {
+            
             this.textBoxIdentifier.Clear();
             this.textBoxDescription.Clear();
             this.textBoxDescriptionEN.Clear();
@@ -368,6 +403,14 @@ namespace DesafioCSharpRest.Views
             this.maskedTextBoxPrice.BackColor = Color.White;
             this.maskedTextBoxVAT.BackColor = Color.White;
         }
-        #endregion
+
+        private void clearForm()
+        {
+            product = null;
+            this.clearFields(null, null);
         }
+        #endregion
+
+        private Button buttonClearFields;
+    }
     }

@@ -26,5 +26,14 @@ namespace DesafioCSharpRest.Domain.Services
 
             return this.repository.save(product);
         }
+
+        public Product updateProduct(Product product)
+        {
+            // 1 - Salvar no banco de dados
+            // 2 - Criar uma Thread nova e tentar salvar/actualizar na API Rest enquanto não tiver resposta 200 OK, quando tiver a resposta 200 OK actualizar o estado do producto na base de dados para sincronizado.
+            // 3 - Ao iniciar a aplicação verificar se tem productos por sincronozar, caso tenha executa o ponto 2.
+
+            return this.repository.update(product);
+        }
     }
 }

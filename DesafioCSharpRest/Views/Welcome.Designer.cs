@@ -34,6 +34,12 @@ namespace DesafioCSharpRest.Views
         private void InitializeComponent()
         {
             this.dataGridViewProduct = new System.Windows.Forms.DataGridView();
+            this.panelActions = new System.Windows.Forms.Panel();
+            this.buttonUpdateProductForm = new System.Windows.Forms.Button();
+            this.buttonRefreshList = new System.Windows.Forms.Button();
+            this.buttonSaveProductForm = new System.Windows.Forms.Button();
+            this.progressBarSync = new System.Windows.Forms.ProgressBar();
+            this.labelSync = new System.Windows.Forms.Label();
             this.idProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.identifierProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,12 +48,6 @@ namespace DesafioCSharpRest.Views
             this.unitProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.availableSTKProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vatProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panelActions = new System.Windows.Forms.Panel();
-            this.buttonUpdateProductForm = new System.Windows.Forms.Button();
-            this.buttonRefreshList = new System.Windows.Forms.Button();
-            this.buttonSaveProductForm = new System.Windows.Forms.Button();
-            this.progressBarSync = new System.Windows.Forms.ProgressBar();
-            this.labelSync = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProduct)).BeginInit();
             this.panelActions.SuspendLayout();
             this.SuspendLayout();
@@ -68,56 +68,9 @@ namespace DesafioCSharpRest.Views
             this.dataGridViewProduct.Location = new System.Drawing.Point(262, 0);
             this.dataGridViewProduct.Name = "dataGridViewProduct";
             this.dataGridViewProduct.RowTemplate.Height = 25;
+            this.dataGridViewProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewProduct.Size = new System.Drawing.Size(830, 417);
             this.dataGridViewProduct.TabIndex = 4;
-            // 
-            // idProduct
-            // 
-            this.idProduct.HeaderText = "ID";
-            this.idProduct.Name = "idProduct";
-            this.idProduct.ReadOnly = true;
-            // 
-            // identifierProduct
-            // 
-            this.identifierProduct.HeaderText = "Identificador";
-            this.identifierProduct.Name = "identifierProduct";
-            this.identifierProduct.ReadOnly = true;
-            // 
-            // descriptionProduct
-            // 
-            this.descriptionProduct.HeaderText = "Descrição";
-            this.descriptionProduct.Name = "descriptionProduct";
-            this.descriptionProduct.ReadOnly = true;
-            // 
-            // descriptionENProduct
-            // 
-            this.descriptionENProduct.HeaderText = "Descrição English";
-            this.descriptionENProduct.Name = "descriptionENProduct";
-            this.descriptionENProduct.ReadOnly = true;
-            // 
-            // priceProduct
-            // 
-            this.priceProduct.HeaderText = "Preço";
-            this.priceProduct.Name = "priceProduct";
-            this.priceProduct.ReadOnly = true;
-            // 
-            // unitProduct
-            // 
-            this.unitProduct.HeaderText = "Unidade";
-            this.unitProduct.Name = "unitProduct";
-            this.unitProduct.ReadOnly = true;
-            // 
-            // availableSTKProduct
-            // 
-            this.availableSTKProduct.HeaderText = "STK Disponível";
-            this.availableSTKProduct.Name = "availableSTKProduct";
-            this.availableSTKProduct.ReadOnly = true;
-            // 
-            // vatProduct
-            // 
-            this.vatProduct.HeaderText = "VAT";
-            this.vatProduct.Name = "vatProduct";
-            this.vatProduct.ReadOnly = true;
             // 
             // panelActions
             // 
@@ -142,6 +95,7 @@ namespace DesafioCSharpRest.Views
             this.buttonUpdateProductForm.TabIndex = 2;
             this.buttonUpdateProductForm.Text = "Editar Produto";
             this.buttonUpdateProductForm.UseVisualStyleBackColor = false;
+            this.buttonUpdateProductForm.Click += new System.EventHandler(this.buttonUpdateProductForm_Click);
             // 
             // buttonRefreshList
             // 
@@ -192,6 +146,62 @@ namespace DesafioCSharpRest.Views
             this.labelSync.TabIndex = 6;
             this.labelSync.Text = "Sincronização:";
             // 
+            // idProduct
+            // 
+            this.idProduct.HeaderText = "ID";
+            this.idProduct.Name = "idProduct";
+            this.idProduct.ReadOnly = true;
+            this.idProduct.Width = 50;
+            // 
+            // identifierProduct
+            // 
+            this.identifierProduct.HeaderText = "Identificador";
+            this.identifierProduct.Name = "identifierProduct";
+            this.identifierProduct.ReadOnly = true;
+            this.identifierProduct.Width = 150;
+            // 
+            // descriptionProduct
+            // 
+            this.descriptionProduct.HeaderText = "Descrição";
+            this.descriptionProduct.Name = "descriptionProduct";
+            this.descriptionProduct.ReadOnly = true;
+            this.descriptionProduct.Width = 150;
+            // 
+            // descriptionENProduct
+            // 
+            this.descriptionENProduct.HeaderText = "Descrição English";
+            this.descriptionENProduct.Name = "descriptionENProduct";
+            this.descriptionENProduct.ReadOnly = true;
+            this.descriptionENProduct.Width = 150;
+            // 
+            // priceProduct
+            // 
+            this.priceProduct.HeaderText = "Preço";
+            this.priceProduct.Name = "priceProduct";
+            this.priceProduct.ReadOnly = true;
+            this.priceProduct.Width = 150;
+            // 
+            // unitProduct
+            // 
+            this.unitProduct.HeaderText = "Unidade";
+            this.unitProduct.Name = "unitProduct";
+            this.unitProduct.ReadOnly = true;
+            this.unitProduct.Width = 150;
+            // 
+            // availableSTKProduct
+            // 
+            this.availableSTKProduct.HeaderText = "STK Disponível";
+            this.availableSTKProduct.Name = "availableSTKProduct";
+            this.availableSTKProduct.ReadOnly = true;
+            this.availableSTKProduct.Width = 50;
+            // 
+            // vatProduct
+            // 
+            this.vatProduct.HeaderText = "VAT";
+            this.vatProduct.Name = "vatProduct";
+            this.vatProduct.ReadOnly = true;
+            this.vatProduct.Width = 50;
+            // 
             // Welcome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -213,14 +223,6 @@ namespace DesafioCSharpRest.Views
         #endregion
 
         private DataGridView dataGridViewProduct;
-        private DataGridViewTextBoxColumn idProduct;
-        private DataGridViewTextBoxColumn identifierProduct;
-        private DataGridViewTextBoxColumn descriptionProduct;
-        private DataGridViewTextBoxColumn descriptionENProduct;
-        private DataGridViewTextBoxColumn priceProduct;
-        private DataGridViewTextBoxColumn unitProduct;
-        private DataGridViewTextBoxColumn availableSTKProduct;
-        private DataGridViewTextBoxColumn vatProduct;
         private Panel panelActions;
         private Button buttonUpdateProductForm;
         private Button buttonRefreshList;
@@ -234,12 +236,33 @@ namespace DesafioCSharpRest.Views
             mainPanel.Controls.Add(ProductForm.getInstance());
         }
 
+        private void buttonUpdateProductForm_Click(object sender, EventArgs e)
+        {
+            
+            if(this.dataGridViewProduct.SelectedRows.Count == 0)
+            {
+                MessageBoxUtils.showWarningBox(this, "Selecione um produto na tabela.");
+                return;
+            }
+
+            String productIdString = (String)this.dataGridViewProduct.SelectedRows[0].Cells[0].Value;
+
+            Int32 productId = Convert.ToInt32(productIdString);
+            //Int32.TryParse(FormatUtils.stringToParseableInteger(productIdString), );
+
+            Product product = ProductDatabaseRepository.getInstance().findById(productId);
+
+            Panel mainPanel = ((Panel)this.Parent);
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(ProductForm.getInstance(product));
+        }
+
         public void buttonRefreshList_Click(object sender, EventArgs e)
         {
             this.refreshDataGridViewData();
         }
 
-        private void refreshDataGridViewData()
+        public void refreshDataGridViewData()
         {
             this.dataGridViewProduct.Rows.Clear();
             IRepository repository = ProductDatabaseRepository.getInstance();
@@ -247,6 +270,8 @@ namespace DesafioCSharpRest.Views
             List<DataGridViewRow> dataGridViewRowList = productList.Select(product =>
             {
                 DataGridViewRow dataGridViewRow = new DataGridViewRow();
+
+                
 
                 DataGridViewTextBoxCell cellId = new DataGridViewTextBoxCell();
                 cellId.Value = FormatUtils.toString(product.Id);
@@ -290,5 +315,13 @@ namespace DesafioCSharpRest.Views
 
         private ProgressBar progressBarSync;
         private Label labelSync;
+        private DataGridViewTextBoxColumn idProduct;
+        private DataGridViewTextBoxColumn identifierProduct;
+        private DataGridViewTextBoxColumn descriptionProduct;
+        private DataGridViewTextBoxColumn descriptionENProduct;
+        private DataGridViewTextBoxColumn priceProduct;
+        private DataGridViewTextBoxColumn unitProduct;
+        private DataGridViewTextBoxColumn availableSTKProduct;
+        private DataGridViewTextBoxColumn vatProduct;
     }
 }

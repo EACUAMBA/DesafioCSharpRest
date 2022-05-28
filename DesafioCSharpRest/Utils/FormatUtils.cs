@@ -26,7 +26,28 @@ namespace DesafioCSharpRest.Utils
                 return defaultValue;    
         }
 
-        public static String stringToParseableNumber(String value)
+        public static String toStringPriceField(Object value, String defaultValue = "Vazio")
+        {
+            //000.000.000 00 MZN
+            if (value != null)
+            {
+                return String.Format("{0}", value).PadLeft(12);
+            }
+            else
+                return defaultValue;    
+        }
+        public static String toStringVATField(Object value, String defaultValue = "Vazio")
+        {
+            //000.000.000 00 MZN
+            if (value != null)
+            {
+                return String.Format("{0}", value).PadLeft(5);
+            }
+            else
+                return defaultValue;
+        }
+
+        public static String stringToParseableDecimal(String value)
         {
            value = value
                 .Replace(" MZN", "")
@@ -37,6 +58,21 @@ namespace DesafioCSharpRest.Utils
                 .Trim()
                 .Replace(" ", ",")
                 .Trim();
+            if (value.Length == 0) return "0";
+            else return value;
+        }
+
+        public static String stringToParseableInteger(String value)
+        {
+            value = value
+                 .Replace(" MZN", "")
+                 .Trim()
+                 .Replace(".", "")
+                 .Trim()
+                 .Replace(",", "")
+                 .Trim()
+                 .Replace(" ", ",")
+                 .Trim();
             if (value.Length == 0) return "0";
             else return value;
         }
