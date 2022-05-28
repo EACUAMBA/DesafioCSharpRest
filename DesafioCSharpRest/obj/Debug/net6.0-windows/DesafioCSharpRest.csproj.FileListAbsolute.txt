@@ -52,3 +52,4 @@ D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows
 D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\bin\Debug\net6.0-windows\Microsoft.Extensions.FileProviders.Abstractions.dll
 D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\bin\Debug\net6.0-windows\Microsoft.Extensions.Hosting.Abstractions.dll
 D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\bin\Debug\net6.0-windows\Quickwire.dll
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\bin\Debug\net6.0-windows\Newtonsoft.Json.dll

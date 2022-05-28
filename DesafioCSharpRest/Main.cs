@@ -1,5 +1,6 @@
 using DesafioCSharpRest.Views;
 using System.Globalization;
+using DesafioCSharpRest.Utils;
 
 namespace DesafioCSharpRest
 {
@@ -10,6 +11,7 @@ namespace DesafioCSharpRest
             CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("pt-MZ");
             InitializeComponent();
             panelControl.Controls.Add(Welcome.getInstance());
+            SyncUtils.startSync();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DesafioCSharpRest.Domain.Models;
 using DesafioCSharpRest.Domain.Repositories;
+using DesafioCSharpRest.EndPoint;
 using Quickwire.Attributes;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,9 @@ namespace DesafioCSharpRest.Domain.Services
             // 1 - Salvar no banco de dados
             // 2 - Criar uma Thread nova e tentar salvar/actualizar na API Rest enquanto não tiver resposta 200 OK, quando tiver a resposta 200 OK actualizar o estado do producto na base de dados para sincronizado.
             // 3 - Ao iniciar a aplicação verificar se tem productos por sincronozar, caso tenha executa o ponto 2.
-
+            ProductEndPointRepository productEndPointRepository= ProductEndPointRepository.getInstance();
+            productEndPointRepository.save(product);
+            return null;
             return this.repository.update(product);
         }
     }

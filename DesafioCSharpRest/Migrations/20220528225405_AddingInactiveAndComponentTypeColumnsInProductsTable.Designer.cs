@@ -3,6 +3,7 @@ using DesafioCSharpRest.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioCSharpRest.Migrations
 {
     [DbContext(typeof(DesafioCSharpRestDBContext))]
-    partial class DesafioCSharpRestDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220528225405_AddingInactiveAndComponentTypeColumnsInProductsTable")]
+    partial class AddingInactiveAndComponentTypeColumnsInProductsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

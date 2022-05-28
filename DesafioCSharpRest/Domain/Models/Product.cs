@@ -13,15 +13,15 @@ namespace DesafioCSharpRest.Domain.Models
         public String Identifier { get; set; }
         public String Description { get; set; }
         public String DescriptionEN { get; set; }
-
         [Column(TypeName = "decimal(18, 2)")]
         public Decimal Price { get; set; }
         public String Unit { get; set; }
         public Double AvailableSTK { get; set; }
         public Double VAT { get; set; }
-
+        public Int32 ServerId { get; set; }
+        public Boolean Inactive { get; set; }
+        public Int32 ComponentType { get; set; }
         public Boolean IsSyncUpdate { get; set; }
-
         public Boolean IsSyncSave { get; set; }
     }
 }

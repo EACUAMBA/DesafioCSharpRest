@@ -112,8 +112,8 @@ namespace DesafioCSharpRest.Views
             // 
             // tableLayoutPanelButtonFields
             // 
-            this.tableLayoutPanelButtonFields.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tableLayoutPanelButtonFields.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanelButtonFields.ColumnCount = 2;
             this.tableLayoutPanelButtonFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.35437F));
@@ -225,8 +225,8 @@ namespace DesafioCSharpRest.Views
             // 
             // textBoxDescription
             // 
-            this.textBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDescription.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxDescription.Location = new System.Drawing.Point(146, 128);
@@ -246,8 +246,8 @@ namespace DesafioCSharpRest.Views
             // 
             // textBoxDescriptionEN
             // 
-            this.textBoxDescriptionEN.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxDescriptionEN.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDescriptionEN.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxDescriptionEN.Location = new System.Drawing.Point(146, 203);
@@ -378,9 +378,11 @@ namespace DesafioCSharpRest.Views
                 newProduct = productService.updateProduct(newProduct);
             else
                 newProduct = productService.saveProduct(newProduct);
-            MessageBoxUtils.showInformationBox(this, String.Format("O producto\n\nID: {0}\nNome: {1} \n\nfoi ragistado/actualizado com sucesso.", newProduct.Id, newProduct.Identifier));
+            if (newProduct != null)
+                MessageBoxUtils.showInformationBox(this, String.Format("O producto\n\nID: {0}\nNome: {1} \n\nfoi ragistado/actualizado com sucesso.", newProduct.Id, newProduct.Identifier));
         }
-        public void buttonCancel_Click(object sender, EventArgs e){
+        public void buttonCancel_Click(object sender, EventArgs e)
+        {
             if (MessageBoxUtils.showQuestionBox(this, "Deseja cancelar o registo do produto?"))
             {
                 this.clearForm();
@@ -390,10 +392,10 @@ namespace DesafioCSharpRest.Views
                 mainPanel.Controls.Add(Welcome.getInstance());
             }
         }
-        
+
         private void clearFields(object sender, EventArgs e)
         {
-            
+
             this.textBoxIdentifier.Clear();
             this.textBoxDescription.Clear();
             this.textBoxDescriptionEN.Clear();
@@ -413,4 +415,4 @@ namespace DesafioCSharpRest.Views
 
         private Button buttonClearFields;
     }
-    }
+}
