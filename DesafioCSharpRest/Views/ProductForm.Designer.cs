@@ -1,4 +1,6 @@
 ﻿using DesafioCSharpRest.Utils;
+using DesafioCSharpRest.Domain.Services;
+using DesafioCSharpRest.Domain.Models;
 
 namespace DesafioCSharpRest.Views
 {
@@ -88,6 +90,7 @@ namespace DesafioCSharpRest.Views
             this.buttonSaveProduct.TabIndex = 1;
             this.buttonSaveProduct.Text = "Registar";
             this.buttonSaveProduct.UseVisualStyleBackColor = false;
+            this.buttonSaveProduct.Click += new System.EventHandler(this.buttonSaveProduct_Click);
             // 
             // tableLayoutPanelButtonFields
             // 
@@ -250,7 +253,7 @@ namespace DesafioCSharpRest.Views
             this.maskedTextBoxPrice.Culture = new System.Globalization.CultureInfo("pt-MZ");
             this.maskedTextBoxPrice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.maskedTextBoxPrice.Location = new System.Drawing.Point(146, 260);
-            this.maskedTextBoxPrice.Mask = "000.000.000,00 MZN";
+            this.maskedTextBoxPrice.Mask = "000.000.000 00 MZN";
             this.maskedTextBoxPrice.Name = "maskedTextBoxPrice";
             this.maskedTextBoxPrice.Size = new System.Drawing.Size(675, 29);
             this.maskedTextBoxPrice.TabIndex = 12;
@@ -304,9 +307,48 @@ namespace DesafioCSharpRest.Views
         private Label labelTitle;
 
         #region Events
-       
+        private void buttonSaveProduct_Click(object sender, EventArgs e)
+        {
+            ProductService productService = ProductService.getInsance();
+
+            String identifier = this.textBoxIdentifier.Text;
+            String description = this.textBoxDescription.Text;
+            String descriptionEN = this.textBoxDescriptionEN.Text;
+            String bearerPrice = this.maskedTextBoxPrice.Text;
+            bearerPrice = FormatUtils.stringToParseableNumber(bearerPrice);
+            Decimal price;
+            bool priceParsed = Decimal.TryParse(bearerPrice, out price);
+            if (!priceParsed)
+            {
+                this.maskedTextBoxPrice.BackColor = Color.FromArgb(248, 188, 188);
+                MessageBoxUtils.showWarningBox(this, "Deves informar o preço!");
+                return;
+            }
+
+            String unit = this.textBoxUnit.Text;
+            String bearerVAT = FormatUtils.stringToParseableNumber(this.maskedTextBoxVAT.Text);
+            Double vat;
+            bool vatParsed = Double.TryParse(bearerVAT, out vat);
+            if (!vatParsed)
+            {
+                this.maskedTextBoxVAT.BackColor = Color.FromArgb(248, 188, 188);
+                MessageBoxUtils.showWarningBox(this, "Deves informar o VAT!");
+                return;
+            }
+
+            Product newProduct = new Product();
+            newProduct.Identifier = identifier;
+            newProduct.Description = description;
+            newProduct.DescriptionEN = descriptionEN;
+            newProduct.Price = price;
+            newProduct.Unit = unit;
+            newProduct.VAT = vat;
+
+            Product savedProduct = productService.saveProduct(newProduct);
+            MessageBoxUtils.showInformationBox(this, String.Format("O producto\nID:{0}\nNome: {1} \nfoi ragistado com sucesso.", savedProduct.Id, savedProduct.Identifier));
+        }
         public void buttonCancel_Click(object sender, EventArgs e){
-            if (MessageBoxUtils.showQuestionBox("Deseja cancelar o registo do produto?"))
+            if (MessageBoxUtils.showQuestionBox(this, "Deseja cancelar o registo do produto?"))
             {
                 this.clearFields();
                 Panel mainPanel = ((Panel)this.Parent);
@@ -314,7 +356,7 @@ namespace DesafioCSharpRest.Views
                 mainPanel.Controls.Add(Welcome.getInstance());
             }
         }
-
+        
         private void clearFields()
         {
             this.textBoxIdentifier.Clear();
@@ -323,6 +365,8 @@ namespace DesafioCSharpRest.Views
             this.textBoxUnit.Clear();
             this.maskedTextBoxVAT.Clear();
             this.maskedTextBoxPrice.Clear();
+            this.maskedTextBoxPrice.BackColor = Color.White;
+            this.maskedTextBoxVAT.BackColor = Color.White;
         }
         #endregion
         }

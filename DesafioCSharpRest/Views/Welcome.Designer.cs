@@ -1,4 +1,9 @@
-﻿namespace DesafioCSharpRest.Views
+﻿using DesafioCSharpRest.Domain.Repositories;
+using DesafioCSharpRest.Domain.Models;
+using DesafioCSharpRest.Utils;
+using System.Windows.Forms;
+
+namespace DesafioCSharpRest.Views
 {
     partial class Welcome
     {
@@ -41,6 +46,8 @@
             this.buttonUpdateProductForm = new System.Windows.Forms.Button();
             this.buttonRefreshList = new System.Windows.Forms.Button();
             this.buttonSaveProductForm = new System.Windows.Forms.Button();
+            this.progressBarSync = new System.Windows.Forms.ProgressBar();
+            this.labelSync = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProduct)).BeginInit();
             this.panelActions.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +68,7 @@
             this.dataGridViewProduct.Location = new System.Drawing.Point(262, 0);
             this.dataGridViewProduct.Name = "dataGridViewProduct";
             this.dataGridViewProduct.RowTemplate.Height = 25;
-            this.dataGridViewProduct.Size = new System.Drawing.Size(830, 449);
+            this.dataGridViewProduct.Size = new System.Drawing.Size(830, 417);
             this.dataGridViewProduct.TabIndex = 4;
             // 
             // idProduct
@@ -149,6 +156,7 @@
             this.buttonRefreshList.TabIndex = 1;
             this.buttonRefreshList.Text = "Actualizar Lista";
             this.buttonRefreshList.UseVisualStyleBackColor = false;
+            this.buttonRefreshList.Click += new System.EventHandler(this.buttonRefreshList_Click);
             // 
             // buttonSaveProductForm
             // 
@@ -165,11 +173,32 @@
             this.buttonSaveProductForm.UseVisualStyleBackColor = false;
             this.buttonSaveProductForm.Click += new System.EventHandler(this.buttonSaveProductForm_Click);
             // 
+            // progressBarSync
+            // 
+            this.progressBarSync.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.progressBarSync.Location = new System.Drawing.Point(378, 423);
+            this.progressBarSync.Name = "progressBarSync";
+            this.progressBarSync.Size = new System.Drawing.Size(711, 23);
+            this.progressBarSync.TabIndex = 5;
+            // 
+            // labelSync
+            // 
+            this.labelSync.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelSync.AutoSize = true;
+            this.labelSync.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelSync.Location = new System.Drawing.Point(262, 423);
+            this.labelSync.Name = "labelSync";
+            this.labelSync.Size = new System.Drawing.Size(109, 21);
+            this.labelSync.TabIndex = 6;
+            this.labelSync.Text = "Sincronização:";
+            // 
             // Welcome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.labelSync);
+            this.Controls.Add(this.progressBarSync);
             this.Controls.Add(this.dataGridViewProduct);
             this.Controls.Add(this.panelActions);
             this.Name = "Welcome";
@@ -177,8 +206,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProduct)).EndInit();
             this.panelActions.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
-            
         }
 
         #endregion
@@ -197,13 +226,69 @@
         private Button buttonRefreshList;
         private Button buttonSaveProductForm;
 
-        #region Events
-            private void buttonSaveProductForm_Click(object sender, EventArgs e)
+        #region Custom code
+        private void buttonSaveProductForm_Click(object sender, EventArgs e)
         {
             Panel mainPanel = ((Panel)this.Parent);
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(ProductForm.getInstance());
         }
+
+        public void buttonRefreshList_Click(object sender, EventArgs e)
+        {
+            this.refreshDataGridViewData();
+        }
+
+        private void refreshDataGridViewData()
+        {
+            this.dataGridViewProduct.Rows.Clear();
+            IRepository repository = ProductDatabaseRepository.getInstance();
+            List<Product> productList = repository.findAll();
+            List<DataGridViewRow> dataGridViewRowList = productList.Select(product =>
+            {
+                DataGridViewRow dataGridViewRow = new DataGridViewRow();
+
+                DataGridViewTextBoxCell cellId = new DataGridViewTextBoxCell();
+                cellId.Value = FormatUtils.toString(product.Id);
+                dataGridViewRow.Cells.Add(cellId);
+
+                DataGridViewTextBoxCell cellIdentifier = new DataGridViewTextBoxCell();
+                cellIdentifier.Value = FormatUtils.toString(product.Identifier);
+                dataGridViewRow.Cells.Add(cellIdentifier);
+
+                DataGridViewTextBoxCell cellDescription = new DataGridViewTextBoxCell();
+                cellDescription.Value = FormatUtils.toString(product.Description);
+                dataGridViewRow.Cells.Add(cellDescription);
+
+                DataGridViewTextBoxCell cellDescriptionEN = new DataGridViewTextBoxCell();
+                cellDescriptionEN.Value = FormatUtils.toString(product.DescriptionEN);
+                dataGridViewRow.Cells.Add(cellDescriptionEN);
+
+                DataGridViewTextBoxCell cellPrice = new DataGridViewTextBoxCell();
+                cellPrice.Value = FormatUtils.currencyFormat(product.Price);
+                dataGridViewRow.Cells.Add(cellPrice);
+
+                DataGridViewTextBoxCell cellUnit = new DataGridViewTextBoxCell();
+                cellUnit.Value = FormatUtils.toString(product.Unit);
+                dataGridViewRow.Cells.Add(cellUnit);
+
+                DataGridViewTextBoxCell cellAvailableSTK = new DataGridViewTextBoxCell();
+                cellAvailableSTK.Value = FormatUtils.toString(product.AvailableSTK);
+                dataGridViewRow.Cells.Add(cellAvailableSTK);
+
+                DataGridViewTextBoxCell cellVAT = new DataGridViewTextBoxCell();
+                cellVAT.Value = FormatUtils.toString(product.VAT);
+                dataGridViewRow.Cells.Add(cellVAT);
+
+                return dataGridViewRow;
+        }).ToList();
+
+        dataGridViewRowList.ForEach(dataGridViewRow => this.dataGridViewProduct.Rows.Add(dataGridViewRow));
+
+        }
         #endregion
+
+        private ProgressBar progressBarSync;
+        private Label labelSync;
     }
 }

@@ -47,11 +47,11 @@ namespace DesafioCSharpRest
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1116, 473);
             this.Controls.Add(this.panelControl);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Main";
             this.Text = "Desafio CSharp Rest";
             this.ResumeLayout(false);
-            this.panelControl.Controls.Add(Welcome.getInstance());
+
         }
         #region Views
        

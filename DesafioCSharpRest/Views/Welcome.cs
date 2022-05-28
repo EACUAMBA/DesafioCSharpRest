@@ -16,6 +16,7 @@ namespace DesafioCSharpRest.Views
         public Welcome()
         {
             InitializeComponent();
+            this.refreshDataGridViewData();
         }
 
         public static Welcome getInstance()

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DesafioCSharpRest.Domain.Services;
+using Quickwire.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +15,7 @@ namespace DesafioCSharpRest.Views
     public partial class ProductForm : UserControl
     {
         private static ProductForm? instance;
+
         public ProductForm()
         {
             InitializeComponent();
