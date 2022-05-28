@@ -4,7 +4,6 @@ D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\bin\Debug\net6.0-windows
 D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\bin\Debug\net6.0-windows\DesafioCSharpRest.dll
 D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\bin\Debug\net6.0-windows\DesafioCSharpRest.pdb
 D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.csproj.AssemblyReference.cache
-D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.Form1.resources
 D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.csproj.GenerateResource.cache
 D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.GeneratedMSBuildEditorConfig.editorconfig
 D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.AssemblyInfoInputs.cache
@@ -15,4 +14,6 @@ D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows
 D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.pdb
 D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.genruntimeconfig.cache
 D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\ref\DesafioCSharpRest.dll
-D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.Form2.resources
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.Main.resources
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.Views.ProductForm.resources
+D:\workspace\csharp\DesafioCSharpRest\DesafioCSharpRest\obj\Debug\net6.0-windows\DesafioCSharpRest.Views.Welcome.resources

@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace DesafioCSharpRest.Views
 {
-    public partial class ProductForm : UserControl
+    public partial class Welcome : UserControl
     {
-        private static ProductForm? instance;
-        public ProductForm()
+        private static Welcome? welcome; 
+        public Welcome()
         {
             InitializeComponent();
         }
 
-        public static ProductForm getInstance()
+        public static Welcome getInstance()
         {
-            if(instance == null)
-                instance = new ProductForm();
-            return instance;
+            if (welcome == null)
+                welcome = new Welcome();
+            return welcome;
         }
     }
 }
