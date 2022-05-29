@@ -55,6 +55,20 @@ namespace DesafioCSharpRest.Domain.Repositories
             return product;
         }
 
+        public List<Product> findByIsSyncSave()
+        {
+            return this.products
+                .Where(product => product.IsSyncSave.Equals(false))
+                .ToList();
+        }
+
+        public List<Product> findByIsSyncUpdate()
+        {
+            return this.products
+                .Where(product => product.IsSyncUpdate.Equals(false))
+                .ToList();
+        }
+
         private static ProductDatabaseRepository? instance;
         public static ProductDatabaseRepository getInstance()
         {

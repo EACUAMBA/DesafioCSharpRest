@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System.Net;
 
 namespace DesafioCSharpRest.EndPoint
 {
@@ -46,7 +47,7 @@ namespace DesafioCSharpRest.EndPoint
             HttpResponseMessage httpResponseMessage = await this._httpClient.SendAsync(httpRequestMessage);
             dynamic value = await httpResponseMessage.Content.ReadAsStringAsync();
             if (value == null) return null;
-            return ((List<ProductDTO>)JsonConvert.DeserializeObject(value.elements)).Select(produtoDTO => produtoDTO.getProduct()).ToList();
+            return ((List<ProductDTO>)JsonConvert.DeserializeObject<ProductDTO>(value.elements)).Select(produtoDTO => produtoDTO.getProduct()).ToList();
         }
 
         public async Task<Product> findById(int id)
@@ -55,12 +56,13 @@ namespace DesafioCSharpRest.EndPoint
             httpRequestMessage.Headers.Add("Accept", "application/json");
             HttpResponseMessage httpResponseMessage = await this._httpClient.SendAsync(httpRequestMessage);
             var value = await httpResponseMessage.Content.ReadAsStringAsync();
-            if (value == null) return null;
-            return ((ProductDTO)JsonConvert.DeserializeObject(value)).getProduct();
+            if (httpResponseMessage.StatusCode.Equals(HttpStatusCode.OK) && value == null) return null;
+            return ((ProductDTO)JsonConvert.DeserializeObject<ProductDTO>(value)).getProduct();
         }
 
         public async Task<Product> save(Product product)
         {
+            
             ProductDTO productDTO = new ProductDTO(product);
             var value = JsonConvert.SerializeObject(productDTO);
             HttpContent httpContent = new StringContent(value);
@@ -68,9 +70,15 @@ namespace DesafioCSharpRest.EndPoint
             httpRequestMessage.Content = new StringContent(value, Encoding.UTF8, "application/json");
             httpRequestMessage.Headers.Add("Accept", "application/json");
             HttpResponseMessage httpResponseMessage = await this._httpClient.SendAsync(httpRequestMessage);
-            value = await httpResponseMessage.Content.ReadAsStringAsync();
-            if (value == null) return null;
-            return ((ProductDTO) JsonConvert.DeserializeObject(value)).getProduct();
+            String productJson = httpResponseMessage.Content.ReadAsStringAsync().Result;
+
+            if (!httpResponseMessage.StatusCode.Equals(HttpStatusCode.Created) || productJson == null) return null;
+
+            product = JsonConvert
+                .DeserializeObject<ProductDTO>(productJson)
+                .getProduct();
+
+            return product;
         }
 
         public async Task<Product> update(Product product)
@@ -82,9 +90,16 @@ namespace DesafioCSharpRest.EndPoint
             httpRequestMessage.Content = new StringContent(value, Encoding.UTF8, "application/json");
             httpRequestMessage.Headers.Add("Accept", "application/json");
             HttpResponseMessage httpResponseMessage = await this._httpClient.SendAsync(httpRequestMessage);
-            value = await httpResponseMessage.Content.ReadAsStringAsync();
-            if (value == null) return null;
-            return ((ProductDTO)JsonConvert.DeserializeObject(value)).getProduct();
+            String productJson = httpResponseMessage.Content.ReadAsStringAsync().Result;
+
+            if (!httpResponseMessage.StatusCode.Equals(HttpStatusCode.OK) || productJson == null) return null;
+
+            product = JsonConvert
+                .DeserializeObject<ProductDTO>(productJson)
+                .getProduct();
+
+            return product;
         }
     }
+    
 }

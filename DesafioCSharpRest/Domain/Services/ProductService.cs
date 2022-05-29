@@ -1,5 +1,6 @@
 ﻿using DesafioCSharpRest.Domain.Models;
 using DesafioCSharpRest.Domain.Repositories;
+using DesafioCSharpRest.Utils;
 using DesafioCSharpRest.EndPoint;
 using Quickwire.Attributes;
 using System;
@@ -24,8 +25,12 @@ namespace DesafioCSharpRest.Domain.Services
             // 1 - Salvar no banco de dados
             // 2 - Criar uma Thread nova e tentar salvar/actualizar na API Rest enquanto não tiver resposta 200 OK, quando tiver a resposta 200 OK actualizar o estado do producto na base de dados para sincronizado.
             // 3 - Ao iniciar a aplicação verificar se tem productos por sincronozar, caso tenha executa o ponto 2.
-
-            return this.repository.save(product);
+            product.IsSyncUpdate = true;
+            product.IsSyncSave = false;
+            product = this.repository.save(product);
+            SyncUtils.stopSync();
+            SyncUtils.startSync();
+            return product;
         }
 
         public Product updateProduct(Product product)
@@ -33,10 +38,12 @@ namespace DesafioCSharpRest.Domain.Services
             // 1 - Salvar no banco de dados
             // 2 - Criar uma Thread nova e tentar salvar/actualizar na API Rest enquanto não tiver resposta 200 OK, quando tiver a resposta 200 OK actualizar o estado do producto na base de dados para sincronizado.
             // 3 - Ao iniciar a aplicação verificar se tem productos por sincronozar, caso tenha executa o ponto 2.
-            ProductEndPointRepository productEndPointRepository= ProductEndPointRepository.getInstance();
-            productEndPointRepository.save(product);
-            return null;
-            return this.repository.update(product);
+            product.IsSyncUpdate = false;
+            product.IsSyncSave = true;
+            product = this.repository.update(product);
+            SyncUtils.stopSync();
+            SyncUtils.startSync();
+            return product;
         }
     }
 }

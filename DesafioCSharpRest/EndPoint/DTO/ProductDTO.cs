@@ -45,6 +45,10 @@ namespace DesafioCSharpRest.EndPoint.DTO
             this.VAT = product.VAT;
         }
 
+        public ProductDTO()
+        {
+        }
+
         public Product getProduct()
         {
             Product product = new Product();
@@ -56,6 +60,8 @@ namespace DesafioCSharpRest.EndPoint.DTO
             product.AvailableSTK = this.AvailableSTK;
             product.VAT = this.VAT;
             product.ServerId = this.Id;
+            product.ComponentType = this.ComponentType;
+            product.Inactive = this.Inactive;
             return product;
         }
     }

@@ -374,6 +374,7 @@ namespace DesafioCSharpRest.Views
             newProduct.Price = price;
             newProduct.Unit = unit;
             newProduct.VAT = vat;
+            
             if (this.product != null)
                 newProduct = productService.updateProduct(newProduct);
             else
