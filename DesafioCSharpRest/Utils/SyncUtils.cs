@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using DesafioCSharpRest.Domain.Repositories;
 using DesafioCSharpRest.Domain.Models;
+using DesafioCSharpRest.Views;
 using DesafioCSharpRest.EndPoint;
 using DesafioCSharpRest.EndPoint.DTO;
 
@@ -33,8 +34,12 @@ namespace DesafioCSharpRest.Utils
             var dbset = ProductDatabaseRepository.getInstance();
             List<Product> productsToSave = dbset.findByIsSyncSave();
             List<Product> productsToUpdate = dbset.findByIsSyncUpdate();
-
+            /*
             int total = productsToSave.Count + productsToUpdate.Count;
+            ProgressBar progressbar = Welcome.getProgressBar();
+           
+            progressbar.Minimum = 0;
+            progressbar.Maximum = total;*/
 
             if (productsToSave.Count > 0)
             {
@@ -53,7 +58,7 @@ namespace DesafioCSharpRest.Utils
                 }
             }
 
-
+            //progressbar.Value = total / 2;
 
             if (productsToUpdate.Count > 0)
             {
@@ -70,7 +75,7 @@ namespace DesafioCSharpRest.Utils
                     }
                 }
             }
-            
+            //progressbar.Value = total;
 
         }
 

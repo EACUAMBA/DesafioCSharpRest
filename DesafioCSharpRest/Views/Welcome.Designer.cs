@@ -34,12 +34,6 @@ namespace DesafioCSharpRest.Views
         private void InitializeComponent()
         {
             this.dataGridViewProduct = new System.Windows.Forms.DataGridView();
-            this.panelActions = new System.Windows.Forms.Panel();
-            this.buttonUpdateProductForm = new System.Windows.Forms.Button();
-            this.buttonRefreshList = new System.Windows.Forms.Button();
-            this.buttonSaveProductForm = new System.Windows.Forms.Button();
-            this.progressBarSync = new System.Windows.Forms.ProgressBar();
-            this.labelSync = new System.Windows.Forms.Label();
             this.idProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.identifierProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +42,12 @@ namespace DesafioCSharpRest.Views
             this.unitProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.availableSTKProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vatProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panelActions = new System.Windows.Forms.Panel();
+            this.buttonUpdateProductForm = new System.Windows.Forms.Button();
+            this.buttonRefreshList = new System.Windows.Forms.Button();
+            this.buttonSaveProductForm = new System.Windows.Forms.Button();
+            this.progressBarSync = new System.Windows.Forms.ProgressBar();
+            this.labelSync = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProduct)).BeginInit();
             this.panelActions.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +71,62 @@ namespace DesafioCSharpRest.Views
             this.dataGridViewProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewProduct.Size = new System.Drawing.Size(830, 417);
             this.dataGridViewProduct.TabIndex = 4;
+            // 
+            // idProduct
+            // 
+            this.idProduct.HeaderText = "ID";
+            this.idProduct.Name = "idProduct";
+            this.idProduct.ReadOnly = true;
+            this.idProduct.Width = 50;
+            // 
+            // identifierProduct
+            // 
+            this.identifierProduct.HeaderText = "Identificador";
+            this.identifierProduct.Name = "identifierProduct";
+            this.identifierProduct.ReadOnly = true;
+            this.identifierProduct.Width = 150;
+            // 
+            // descriptionProduct
+            // 
+            this.descriptionProduct.HeaderText = "Descrição";
+            this.descriptionProduct.Name = "descriptionProduct";
+            this.descriptionProduct.ReadOnly = true;
+            this.descriptionProduct.Width = 150;
+            // 
+            // descriptionENProduct
+            // 
+            this.descriptionENProduct.HeaderText = "Descrição English";
+            this.descriptionENProduct.Name = "descriptionENProduct";
+            this.descriptionENProduct.ReadOnly = true;
+            this.descriptionENProduct.Width = 150;
+            // 
+            // priceProduct
+            // 
+            this.priceProduct.HeaderText = "Preço";
+            this.priceProduct.Name = "priceProduct";
+            this.priceProduct.ReadOnly = true;
+            this.priceProduct.Width = 150;
+            // 
+            // unitProduct
+            // 
+            this.unitProduct.HeaderText = "Unidade";
+            this.unitProduct.Name = "unitProduct";
+            this.unitProduct.ReadOnly = true;
+            this.unitProduct.Width = 150;
+            // 
+            // availableSTKProduct
+            // 
+            this.availableSTKProduct.HeaderText = "STK Disponível";
+            this.availableSTKProduct.Name = "availableSTKProduct";
+            this.availableSTKProduct.ReadOnly = true;
+            this.availableSTKProduct.Width = 50;
+            // 
+            // vatProduct
+            // 
+            this.vatProduct.HeaderText = "VAT";
+            this.vatProduct.Name = "vatProduct";
+            this.vatProduct.ReadOnly = true;
+            this.vatProduct.Width = 50;
             // 
             // panelActions
             // 
@@ -130,6 +186,7 @@ namespace DesafioCSharpRest.Views
             // progressBarSync
             // 
             this.progressBarSync.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.progressBarSync.Enabled = false;
             this.progressBarSync.Location = new System.Drawing.Point(378, 423);
             this.progressBarSync.Name = "progressBarSync";
             this.progressBarSync.Size = new System.Drawing.Size(711, 23);
@@ -139,68 +196,13 @@ namespace DesafioCSharpRest.Views
             // 
             this.labelSync.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelSync.AutoSize = true;
+            this.labelSync.Enabled = false;
             this.labelSync.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelSync.Location = new System.Drawing.Point(262, 423);
             this.labelSync.Name = "labelSync";
             this.labelSync.Size = new System.Drawing.Size(109, 21);
             this.labelSync.TabIndex = 6;
             this.labelSync.Text = "Sincronização:";
-            // 
-            // idProduct
-            // 
-            this.idProduct.HeaderText = "ID";
-            this.idProduct.Name = "idProduct";
-            this.idProduct.ReadOnly = true;
-            this.idProduct.Width = 50;
-            // 
-            // identifierProduct
-            // 
-            this.identifierProduct.HeaderText = "Identificador";
-            this.identifierProduct.Name = "identifierProduct";
-            this.identifierProduct.ReadOnly = true;
-            this.identifierProduct.Width = 150;
-            // 
-            // descriptionProduct
-            // 
-            this.descriptionProduct.HeaderText = "Descrição";
-            this.descriptionProduct.Name = "descriptionProduct";
-            this.descriptionProduct.ReadOnly = true;
-            this.descriptionProduct.Width = 150;
-            // 
-            // descriptionENProduct
-            // 
-            this.descriptionENProduct.HeaderText = "Descrição English";
-            this.descriptionENProduct.Name = "descriptionENProduct";
-            this.descriptionENProduct.ReadOnly = true;
-            this.descriptionENProduct.Width = 150;
-            // 
-            // priceProduct
-            // 
-            this.priceProduct.HeaderText = "Preço";
-            this.priceProduct.Name = "priceProduct";
-            this.priceProduct.ReadOnly = true;
-            this.priceProduct.Width = 150;
-            // 
-            // unitProduct
-            // 
-            this.unitProduct.HeaderText = "Unidade";
-            this.unitProduct.Name = "unitProduct";
-            this.unitProduct.ReadOnly = true;
-            this.unitProduct.Width = 150;
-            // 
-            // availableSTKProduct
-            // 
-            this.availableSTKProduct.HeaderText = "STK Disponível";
-            this.availableSTKProduct.Name = "availableSTKProduct";
-            this.availableSTKProduct.ReadOnly = true;
-            this.availableSTKProduct.Width = 50;
-            // 
-            // vatProduct
-            // 
-            this.vatProduct.HeaderText = "VAT";
-            this.vatProduct.Name = "vatProduct";
-            this.vatProduct.ReadOnly = true;
-            this.vatProduct.Width = 50;
             // 
             // Welcome
             // 

@@ -25,5 +25,10 @@ namespace DesafioCSharpRest.Views
                 welcome = new Welcome();
             return welcome;
         }
+
+        public static ProgressBar getProgressBar()
+        {
+            return getInstance().progressBarSync;
+        }
     }
 }
