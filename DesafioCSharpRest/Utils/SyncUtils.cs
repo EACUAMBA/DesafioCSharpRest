@@ -34,6 +34,8 @@ namespace DesafioCSharpRest.Utils
             List<Product> productsToSave = dbset.findByIsSyncSave();
             List<Product> productsToUpdate = dbset.findByIsSyncUpdate();
 
+            int total = productsToSave.Count + productsToUpdate.Count;
+
             if (productsToSave.Count > 0)
             {
                 foreach (Product product in productsToSave)
@@ -51,6 +53,8 @@ namespace DesafioCSharpRest.Utils
                 }
             }
 
+
+
             if (productsToUpdate.Count > 0)
             {
                 foreach (Product product in productsToUpdate)
@@ -66,7 +70,7 @@ namespace DesafioCSharpRest.Utils
                     }
                 }
             }
-
+            
 
         }
 

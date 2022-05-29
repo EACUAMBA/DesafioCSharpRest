@@ -28,6 +28,7 @@ namespace DesafioCSharpRest.Domain.Services
             product.IsSyncUpdate = true;
             product.IsSyncSave = false;
             product = this.repository.save(product);
+
             SyncUtils.stopSync();
             SyncUtils.startSync();
             return product;

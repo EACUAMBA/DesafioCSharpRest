@@ -44,7 +44,17 @@ namespace DesafioCSharpRest.EndPoint
         {
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "/products");
             httpRequestMessage.Headers.Add("Accept", "application/json");
-            HttpResponseMessage httpResponseMessage = await this._httpClient.SendAsync(httpRequestMessage);
+            HttpResponseMessage httpResponseMessage = null;
+            try
+            {
+                httpResponseMessage = await this._httpClient.SendAsync(httpRequestMessage);
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine("Ocorreu um erro ao tentar fazer a requisição! Tentarei daqui a 15 min.");
+            }
+
+            if (httpResponseMessage == null) return null;
             dynamic value = await httpResponseMessage.Content.ReadAsStringAsync();
             if (value == null) return null;
             return ((List<ProductDTO>)JsonConvert.DeserializeObject<ProductDTO>(value.elements)).Select(produtoDTO => produtoDTO.getProduct()).ToList();
@@ -54,7 +64,17 @@ namespace DesafioCSharpRest.EndPoint
         { 
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "/products/" + id);
             httpRequestMessage.Headers.Add("Accept", "application/json");
-            HttpResponseMessage httpResponseMessage = await this._httpClient.SendAsync(httpRequestMessage);
+            HttpResponseMessage httpResponseMessage = null;
+            try
+            {
+                httpResponseMessage = await this._httpClient.SendAsync(httpRequestMessage);
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine("Ocorreu um erro ao tentar fazer a requisição! Tentarei daqui a 15 min.");
+            }
+
+            if (httpResponseMessage == null) return null;
             var value = await httpResponseMessage.Content.ReadAsStringAsync();
             if (httpResponseMessage.StatusCode.Equals(HttpStatusCode.OK) && value == null) return null;
             return ((ProductDTO)JsonConvert.DeserializeObject<ProductDTO>(value)).getProduct();
@@ -69,7 +89,17 @@ namespace DesafioCSharpRest.EndPoint
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, "/products");
             httpRequestMessage.Content = new StringContent(value, Encoding.UTF8, "application/json");
             httpRequestMessage.Headers.Add("Accept", "application/json");
-            HttpResponseMessage httpResponseMessage = await this._httpClient.SendAsync(httpRequestMessage);
+            HttpResponseMessage httpResponseMessage = null;
+            try
+            {
+                httpResponseMessage = await this._httpClient.SendAsync(httpRequestMessage);
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine("Ocorreu um erro ao tentar fazer a requisição! Tentarei daqui a 15 min.");
+            }
+
+            if (httpResponseMessage == null) return null;
             String productJson = httpResponseMessage.Content.ReadAsStringAsync().Result;
 
             if (!httpResponseMessage.StatusCode.Equals(HttpStatusCode.Created) || productJson == null) return null;
@@ -83,13 +113,24 @@ namespace DesafioCSharpRest.EndPoint
 
         public async Task<Product> update(Product product)
         {
+            
             ProductDTO productDTO = new ProductDTO(product);
             var value = JsonConvert.SerializeObject(productDTO);
             HttpContent httpContent = new StringContent(value);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, "/products/" + product.ServerId);
             httpRequestMessage.Content = new StringContent(value, Encoding.UTF8, "application/json");
             httpRequestMessage.Headers.Add("Accept", "application/json");
-            HttpResponseMessage httpResponseMessage = await this._httpClient.SendAsync(httpRequestMessage);
+            HttpResponseMessage httpResponseMessage = null;
+            try
+            {
+                httpResponseMessage = await this._httpClient.SendAsync(httpRequestMessage);
+            }catch(HttpRequestException e)
+            {
+                Console.WriteLine("Ocorreu um erro ao tentar fazer a requisição! Tentarei daqui a 15 min.");
+            }
+
+            if (httpResponseMessage == null) return null;
+
             String productJson = httpResponseMessage.Content.ReadAsStringAsync().Result;
 
             if (!httpResponseMessage.StatusCode.Equals(HttpStatusCode.OK) || productJson == null) return null;
